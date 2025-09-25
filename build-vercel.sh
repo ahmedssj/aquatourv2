@@ -1,38 +1,21 @@
 #!/bin/bash
-set -e  # Salir si cualquier comando falla
+set -e
 
-echo "🚀 Iniciando build para Vercel..."
+echo "🚀 Iniciando build simplificado para Vercel..."
 
-# Crear directorio temporal para Flutter
-mkdir -p /tmp/flutter-install
-cd /tmp/flutter-install
-
-# Descargar Flutter si no existe
-if [ ! -d "/tmp/flutter" ]; then
-    echo "📦 Descargando Flutter 3.16.0..."
-    wget -q https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.0-stable.tar.xz
-    tar xf flutter_linux_3.16.0-stable.tar.xz
-    mv flutter /tmp/flutter
-fi
-
-# Volver al directorio del proyecto
-cd $VERCEL_PROJECT_ROOT || cd /vercel/path0
+# Descargar e instalar Flutter directamente en el directorio actual
+echo "📦 Descargando Flutter 3.16.0..."
+curl -fsSL https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.0-stable.tar.xz | tar xJ
 
 # Configurar PATH
-export PATH="/tmp/flutter/bin:$PATH"
+export PATH="$PWD/flutter/bin:$PATH"
 
 # Configurar Git
-git config --global --add safe.directory /tmp/flutter
+git config --global --add safe.directory "$PWD/flutter"
 
 # Verificar Flutter
 echo "🔍 Verificando Flutter..."
-flutter --version || {
-    echo "❌ Flutter no funciona, intentando instalación alternativa..."
-    # Instalación alternativa
-    curl -fsSL https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.0-stable.tar.xz | tar xJ -C /tmp/
-    export PATH="/tmp/flutter/bin:$PATH"
-    flutter --version
-}
+flutter --version
 
 # Configurar Flutter para web
 echo "🌐 Configurando Flutter Web..."
@@ -42,27 +25,24 @@ flutter config --enable-web --no-analytics
 echo "📦 Obteniendo dependencias..."
 flutter pub get
 
-# Limpiar build anterior
-flutter clean
-
 # Build para web
 echo "🏗️ Construyendo aplicación..."
-flutter build web --release --verbose
+flutter build web --release
 
 # Verificar resultado
 if [ -f "build/web/index.html" ]; then
     echo "✅ Build exitoso!"
-    echo "📁 Archivos generados:"
-    ls -la build/web/ | head -10
-    echo "📊 Tamaño total:"
-    du -sh build/web/
+    echo "📁 Archivos principales:"
+    ls -la build/web/ | grep -E "(index.html|main.dart.js|flutter.js)" || ls -la build/web/ | head -5
 else
-    echo "❌ Build falló - index.html no encontrado"
-    echo "📁 Contenido actual:"
+    echo "❌ Build falló"
+    echo "📁 Directorio actual:"
     ls -la
-    echo "📁 Contenido de build/:"
-    ls -la build/ 2>/dev/null || echo "Directorio build no existe"
+    if [ -d "build" ]; then
+        echo "📁 Contenido de build/:"
+        ls -la build/
+    fi
     exit 1
 fi
 
-echo "🎉 Build completado exitosamente!"
+echo "🎉 Build completado!"
