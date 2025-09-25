@@ -23,7 +23,7 @@ flutter pub get
 
 # Construir la aplicación
 echo "Construyendo la aplicación para web..."
-flutter build web --release
+flutter build web --release --no-wasm-dry-run
 
 # Verificar que el directorio de salida existe
 if [ -d "build/web" ]; then

@@ -5,7 +5,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:aquatour/login_screen.dart';
 import 'package:aquatour/services/auth_service.dart';
 import 'package:aquatour/services/local_storage_service.dart';
-import 'dart:html' as html;
+
+// Importación condicional para web
+import 'dart:html' as html show window;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

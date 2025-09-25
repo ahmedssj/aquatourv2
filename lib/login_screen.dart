@@ -7,6 +7,7 @@ import 'package:aquatour/widgets/custom_button.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:aquatour/services/auth_service.dart';
 import 'package:aquatour/services/local_storage_service.dart';
+import 'package:aquatour/models/user.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
