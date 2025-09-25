@@ -1,12 +1,9 @@
 {
   "version": 2,
   "name": "aquatour-crm",
-  "builds": [
-    {
-      "src": "build/web/**/*",
-      "use": "@vercel/static"
-    }
-  ],
+  "buildCommand": "bash build.sh",
+  "outputDirectory": "build/web",
+  "installCommand": "echo 'Dependencies handled by build script'",
   "routes": [
     {
       "src": "/assets/(.*)",
@@ -21,8 +18,15 @@
       "dest": "/icons/$1"
     },
     {
-      "src": "/(.*\\.(js|css|wasm|json|txt|xml))",
+      "src": "/(.*\\.(js|css|wasm|json|txt|xml|map))",
       "dest": "/$1"
+    },
+    {
+      "src": "/flutter_service_worker.js",
+      "dest": "/flutter_service_worker.js",
+      "headers": {
+        "Cache-Control": "no-cache"
+      }
     },
     {
       "src": "/(.*)",
@@ -56,9 +60,5 @@
         }
       ]
     }
-  ],
-  "env": {
-    "APP_ENV": "production",
-    "DEBUG": "false"
-  }
+  ]
 }
