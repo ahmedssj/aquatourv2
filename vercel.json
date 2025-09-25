@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "aquatour-crm",
-  "buildCommand": "bash build-simple.sh",
+  "buildCommand": "chmod +x build-vercel.sh && bash build-vercel.sh",
   "outputDirectory": "build/web",
   "installCommand": "echo 'Dependencies handled by build script'",
   "rewrites": [
