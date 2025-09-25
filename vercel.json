@@ -4,33 +4,10 @@
   "buildCommand": "bash build.sh",
   "outputDirectory": "build/web",
   "installCommand": "echo 'Dependencies handled by build script'",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/canvaskit/(.*)",
-      "dest": "/canvaskit/$1"
-    },
-    {
-      "src": "/icons/(.*)",
-      "dest": "/icons/$1"
-    },
-    {
-      "src": "/(.*\\.(js|css|wasm|json|txt|xml|map))",
-      "dest": "/$1"
-    },
-    {
-      "src": "/flutter_service_worker.js",
-      "dest": "/flutter_service_worker.js",
-      "headers": {
-        "Cache-Control": "no-cache"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
@@ -53,6 +30,15 @@
     },
     {
       "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.(js|css|wasm|json|txt|xml|map))",
       "headers": [
         {
           "key": "Cache-Control",
