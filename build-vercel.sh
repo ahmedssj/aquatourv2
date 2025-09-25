@@ -4,8 +4,8 @@ set -e
 echo "🚀 Iniciando build simplificado para Vercel..."
 
 # Descargar e instalar Flutter directamente en el directorio actual
-echo "📦 Descargando Flutter 3.16.0..."
-curl -fsSL https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.16.0-stable.tar.xz | tar xJ
+echo "📦 Descargando Flutter 3.24.0 (con Dart SDK 3.9.0+)..."
+curl -fsSL https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.24.0-stable.tar.xz | tar xJ
 
 # Configurar PATH
 export PATH="$PWD/flutter/bin:$PATH"
