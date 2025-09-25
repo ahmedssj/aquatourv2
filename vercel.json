@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "aquatour-crm",
-  "buildCommand": "bash build.sh",
+  "buildCommand": "bash build-simple.sh",
   "outputDirectory": "build/web",
   "installCommand": "echo 'Dependencies handled by build script'",
   "rewrites": [
