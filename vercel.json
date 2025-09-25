@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "aquatour-crm",
-  "buildCommand": "chmod +x build-robust.sh && bash build-robust.sh",
+  "buildCommand": "chmod +x build-final-fixed.sh && bash build-final-fixed.sh",
   "outputDirectory": "build/web",
   "installCommand": "echo 'Dependencies handled by build script'",
   "rewrites": [

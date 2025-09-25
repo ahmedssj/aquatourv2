@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:aquatour/dashboard_screen.dart';
 import 'package:aquatour/limited_dashboard_screen.dart';
@@ -169,19 +168,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text(
                           'AquaTour CRM',
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.montserrat(
+                          style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
                             color: Colors.black87,
+                            fontFamily: 'Roboto',
                           ),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           'Inicia sesión para continuar',
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.montserrat(
+                          style: TextStyle(
                             fontSize: 16,
                             color: Colors.grey[600],
+                            fontFamily: 'Roboto',
                           ),
                         ),
                         const SizedBox(height: 32),

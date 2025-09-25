@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:aquatour/login_screen.dart';
 import 'package:aquatour/services/auth_service.dart';
@@ -55,7 +54,10 @@ class MyApp extends StatelessWidget {
         primaryColor: colorPrimario,
         hintColor: colorAcento,
         scaffoldBackgroundColor: Colors.white,
-        textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
+        textTheme: Theme.of(context).textTheme.copyWith(
+          bodyLarge: const TextStyle(fontFamily: 'Roboto'),
+          bodyMedium: const TextStyle(fontFamily: 'Roboto'),
+        ),
         appBarTheme: const AppBarTheme(
           backgroundColor: colorPrimario,
           elevation: 0,
