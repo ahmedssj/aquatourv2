@@ -1,0 +1,14 @@
+{
+  "build": {
+    "type": "npm",
+    "commands": [
+      "npm install --production"
+    ]
+  },
+  "deploy": {
+    "env": "production"
+  },
+  "hooks": {
+    "postDeploy": "npm run setup"
+  }
+}

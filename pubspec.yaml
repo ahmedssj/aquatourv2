@@ -1,0 +1,39 @@
+name: aquatour
+description: "Aplicación CRM interna para empleados de Aquatour"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.3.1
+  form_field_validator: ^1.1.0
+  # HTTP requests para API REST
+  http: ^1.1.0
+  # Gestión de estado
+  provider: ^6.1.1
+  # Para variables de entorno
+  flutter_dotenv: ^6.0.0
+  # JSON serialization
+  json_annotation: ^4.8.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  # Para generar código JSON
+  build_runner: ^2.4.7
+  json_serializable: ^6.7.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - .env
